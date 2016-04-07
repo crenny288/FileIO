@@ -1,8 +1,25 @@
 package com.theironyard.clt;
 
-public class Main {
+import jodd.json.JsonSerializer;
 
-    public static void main(String[] args) {
-	// write your code here
+import java.io.File;
+import java.io.IOException;
+
+public class ReadWriteJson {
+    public static void main(String[] args) throws IOException {
+        Sport s = new Sport();
+        s.where = "outdoor";
+        s.name = "Football";
+        s.type = "team";
+        s.surface = "grass";
+        s.season = "fall";
+
+        File f = new File("sport.json");
+
+
+        // write json
+        JsonSerializer serializer = new JsonSerializer();
+        String json = serializer
     }
+
 }
