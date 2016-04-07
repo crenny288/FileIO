@@ -1,9 +1,12 @@
 package com.theironyard.clt;
 
+import jodd.json.JsonParser;
 import jodd.json.JsonSerializer;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class ReadWriteJson {
     public static void main(String[] args) throws IOException {
@@ -19,7 +22,20 @@ public class ReadWriteJson {
 
         // write json
         JsonSerializer serializer = new JsonSerializer();
-        String json = serializer
+        String json = serializer.serialize(s);
+        FileWriter fw = new FileWriter(f);
+        fw.write(json);
+        fw.close();
+
+        // read json
+        Scanner s = new Scanner (f);
+        s.useDelimiter("\\Z");
+        String contents = s.next();
+        JsonParser parser = new JsonParser();
+        Sport s2 = parser.parse(contents, Sport.class);
+
+        System.out.println(s2);
+
     }
 
 }
