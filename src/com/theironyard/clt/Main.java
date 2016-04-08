@@ -34,7 +34,7 @@ public class Main {
 
         // write Sport json
         JsonSerializer serializer = new JsonSerializer();
-        String json = serializer.serialze(sport);
+        String json = serializer.serialize(sport);
         FileWriter fw = new FileWriter(f);
         fw.write(json);
         fw.close();
@@ -42,6 +42,7 @@ public class Main {
         // read Sport json
         Scanner s = new Scanner(f);
         s.useDelimiter("\\Z");
+        String contents = s.next();
         JsonParser parser = new JsonParser();
         Sport sports = parser.parse(contents, Sport.class);
 
