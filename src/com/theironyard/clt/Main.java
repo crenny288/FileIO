@@ -8,34 +8,48 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ReadWriteJson {
+public class Main {
     public static void main(String[] args) throws IOException {
-        Sport s = new Sport();
-        s.where = "outdoor";
-        s.name = "Football";
-        s.type = "team";
-        s.surface = "grass";
-        s.season = "fall";
+        Sport sport = new Sport();
+        Scanner scanner = new Scanner(System.in);
 
-        File f = new File("sport.json");
+        File f = new File("Sport.json");
+
+        // ask user to give info about Sport
+        System.out.println("What is your favorite Sport name?");
+        sport.name = scanner.nextLine();
+
+        System.out.println("Is it played Indoor or Outdoor?");
+        sport.where = scanner.nextLine();
+
+        System.out.println("What type of player single or team?");
+        sport.type = scanner.nextLine();
+
+        System.out.println("What surface is it played on?");
+        sport.surface = scanner.nextLine();
+
+        System.out.println("What season is it played in?");
+        sport.season = scanner.nextLine();
 
 
-        // write json
+        // write Sport json
         JsonSerializer serializer = new JsonSerializer();
-        String json = serializer.serialize(s);
+        String json = serializer.serialze(sport);
         FileWriter fw = new FileWriter(f);
         fw.write(json);
         fw.close();
 
-        // read json
-        Scanner s = new Scanner (f);
+        // read Sport json
+        Scanner s = new Scanner(f);
         s.useDelimiter("\\Z");
-        String contents = s.next();
         JsonParser parser = new JsonParser();
-        Sport s2 = parser.parse(contents, Sport.class);
+        Sport sports = parser.parse(contents, Sport.class);
 
-        System.out.println(s2);
+        System.out.println(sports);
+
+
+
+
 
     }
-
 }
